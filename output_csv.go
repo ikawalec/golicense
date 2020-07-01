@@ -7,9 +7,9 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/mitchellh/golicense/config"
-	"github.com/mitchellh/golicense/license"
-	"github.com/mitchellh/golicense/module"
+	"github.com/ikawalec/golicense/config"
+	"github.com/ikawalec/golicense/license"
+	"github.com/ikawalec/golicense/module"
 	"github.com/pkg/errors"
 )
 
