@@ -14,14 +14,14 @@ import (
 	"github.com/rsc/goversion/version"
 	"golang.org/x/oauth2"
 
-	"github.com/mitchellh/golicense/config"
-	"github.com/mitchellh/golicense/license"
-	githubFinder "github.com/mitchellh/golicense/license/github"
-	"github.com/mitchellh/golicense/license/golang"
-	"github.com/mitchellh/golicense/license/gopkg"
-	"github.com/mitchellh/golicense/license/mapper"
-	"github.com/mitchellh/golicense/license/resolver"
-	"github.com/mitchellh/golicense/module"
+	"github.com/ikawalec/golicense/config"
+	"github.com/ikawalec/golicense/license"
+	githubFinder "github.com/ikawalec/golicense/license/github"
+	"github.com/ikawalec/golicense/license/golang"
+	"github.com/ikawalec/golicense/license/gopkg"
+	"github.com/ikawalec/golicense/license/mapper"
+	"github.com/ikawalec/golicense/license/resolver"
+	"github.com/ikawalec/golicense/module"
 )
 
 const (
@@ -37,14 +37,15 @@ func realMain() int {
 
 	var flagLicense bool
 	var flagOutXLSX string
+	var flagOutCSV string
 	flags := flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 	flags.BoolVar(&flagLicense, "license", true,
 		"look up and verify license. If false, dependencies are\n"+
 			"printed without licenses.")
 	flags.BoolVar(&termOut.Plain, "plain", false, "plain terminal output, no colors or live updates")
 	flags.BoolVar(&termOut.Verbose, "verbose", false, "additional logging to terminal, requires -plain")
-	flags.StringVar(&flagOutXLSX, "out-xlsx", "",
-		"save report in Excel XLSX format to the given path")
+	flags.StringVar(&flagOutXLSX, "out-xlsx", "", "save report in Excel XLSX format to the given path")
+	flags.StringVar(&flagOutCSV, "out-csv", "", "save report in csv format to the given path")
 	flags.Parse(os.Args[1:])
 	args := flags.Args()
 	if len(args) == 0 {
@@ -119,6 +120,13 @@ func realMain() int {
 	if flagOutXLSX != "" {
 		out.Outputs = append(out.Outputs, &XLSXOutput{
 			Path:   flagOutXLSX,
+			Config: &cfg,
+		})
+	}
+
+	if flagOutCSV != "" {
+		out.Outputs = append(out.Outputs, &CSVOutput{
+			Path:   flagOutCSV,
 			Config: &cfg,
 		})
 	}
@@ -209,7 +217,7 @@ all the licenses of dependencies, or a configuration file and a binary
 which also notes which licenses are allowed among other settings.
 
 For full help text, see the README in the GitHub repository:
-http://github.com/mitchellh/golicense
+http://github.com/ikawalec/golicense
 
 Flags:
 

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/mitchellh/golicense/license"
-	"github.com/mitchellh/golicense/module"
+	"github.com/ikawalec/golicense/license"
+	"github.com/ikawalec/golicense/module"
 )
 
 // Output represents the output format for the progress and completion

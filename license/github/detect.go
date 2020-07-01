@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/google/go-github/v18/github"
+	"github.com/ikawalec/golicense/license"
 	"github.com/mitchellh/go-spdx"
-	"github.com/mitchellh/golicense/license"
 	"gopkg.in/src-d/go-license-detector.v2/licensedb"
 	"gopkg.in/src-d/go-license-detector.v2/licensedb/filer"
 )

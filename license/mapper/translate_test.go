@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/mitchellh/golicense/module"
+	"github.com/ikawalec/golicense/module"
 	"github.com/stretchr/testify/require"
 )
 
@@ -32,8 +32,8 @@ func TestTranslator(t *testing.T) {
 			map[string]string{
 				`/^gopkg\.in/([^/]+)/([^/]+)\./`: `github.com/\1/\2`,
 			},
-			"gopkg.in/mitchellh/foo.v22",
-			"github.com/mitchellh/foo",
+			"gopkg.in/ikawalec/foo.v22",
+			"github.com/ikawalec/foo",
 		},
 	}
 
